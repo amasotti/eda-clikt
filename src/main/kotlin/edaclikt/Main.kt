@@ -11,6 +11,6 @@ const val CSV_FILE = "src/main/resources/demo.csv"
 
 fun main(args: Array<String>) = CLI()
     .subcommands(
-        Print(), Describe(), Schema(), Shape(), Sort()
+        Print(), Describe(), Schema(), Shape(), Sort(), Plot()
     )
     .main(args)

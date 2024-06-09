@@ -14,6 +14,7 @@ repositories {
 dependencies {
     implementation("com.github.ajalt.clikt:clikt:4.4.0")
     implementation("org.jetbrains.kotlinx:dataframe:0.13.1")
+    implementation("org.jetbrains.kotlinx:kandy-lets-plot:0.6.0")
 
     testImplementation(kotlin("test"))
     testImplementation("io.kotest:kotest-runner-junit5:5.9.0")
