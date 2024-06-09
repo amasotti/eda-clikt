@@ -26,6 +26,10 @@ kotlin {
     jvmToolchain(21)
 }
 
+tasks.build {
+    dependsOn("check")
+}
+
 application {
     mainClass = "edaclikt.MainKt"
 }
