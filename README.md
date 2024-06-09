@@ -38,3 +38,55 @@ There are two ways at least to run the project:
 
 ./build/install/eda-cli/bin/eda-cli <command> <args>
 ```
+
+### Available Commands
+
+#### Print 
+
+Prints the first `n` rows of the dataframe.
+
+```shell
+./gradlew run --args="print --rows <n> --path <path to csv file>" # default 10
+```
+or 
+    
+```shell
+./build/install/eda-cli/bin/eda-cli print --rows <n> --path <path to csv file> # default 10
+```
+Both options for running the CLI are available for the other commands, but they will 
+not be repeated.
+
+#### Describe
+
+Prints the summary statistics of the dataframe.
+
+```shell
+./gradlew run --args="describe --path <path to csv file>"
+```
+
+#### Schema
+
+Prints the schema of the dataframe.
+
+```shell
+./gradlew run --args="schema --path <path to csv file>"
+```
+
+#### Shape
+
+Prints the size of the dataframe.
+
+```shell
+./gradlew run --args="shape --path <path to csv file>"
+```
+
+#### Sort
+
+Sorts the dataframe by the given year.
+
+```shell
+./gradlew run --args="sort --path <path-to-csv> --year <year-column> --rows <number-of-rows> --order <true|false>"
+```
+
+
+
