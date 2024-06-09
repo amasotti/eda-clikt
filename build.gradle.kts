@@ -27,6 +27,6 @@ kotlin {
 }
 
 application {
-    mainClass = "learning.toni.edaclikt.MainKt"
+    mainClass = "edaclikt.MainKt"
 }
 
