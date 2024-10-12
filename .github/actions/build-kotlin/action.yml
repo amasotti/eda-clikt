@@ -1,0 +1,35 @@
+name: 'Run test cases'
+description: 'Runs test cases and build'
+
+inputs:
+  java-version:
+    description: 'Java version'
+    default: '21'
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: "🔧 Set up JDK ${{ inputs.java-version }}"
+      uses: actions/setup-java@v3
+      with:
+        java-version: ${{ inputs.java-version }}
+        distribution: 'corretto'
+        cache: 'gradle'
+
+    - name: "🔧 Setup Gradle"
+      uses: gradle/gradle-build-action@v2.4.2 # older versions contain a vulnerability
+      with:
+        cache-disabled: false
+
+    - name: "🔎 Run check & detekt"
+      run: |
+        ./gradlew check --no-daemon --continue
+      shell: bash
+
+    - name: "🔧 Run Gradle tasks and build project"
+      run: |
+        ./gradlew build --no-daemon --continue
+      shell: bash
+
+

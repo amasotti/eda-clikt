@@ -1,0 +1,62 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches: [ "main" ]
+  workflow-dispatch:
+#  schedule:
+#    - cron: '16 12 * * 1'
+
+jobs:
+  analyze:
+    name: Analyze Rust
+    # Runner size impacts CodeQL analysis time. To learn more, please see:
+    #   - https://gh.io/recommended-hardware-resources-for-running-codeql
+    #   - https://gh.io/supported-runners-and-hardware-resources
+    #   - https://gh.io/using-larger-runners
+    # Consider using larger runners for possible analysis time improvements.
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      # required for all workflows
+      security-events: write
+
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: java-kotlin
+          build-mode: autobuild
+
+      # If the analyze step fails for one of the languages you are analyzing with
+      # "We were unable to automatically build your code", modify the matrix above
+      # to set the build mode to "manual" for that language. Then modify this step
+      # to build your code.
+      # ℹ️ Command-line programs to run using the OS shell.
+      # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
+      - name: "🔧 Run Gradle tasks and build project"
+        continue-on-error: false
+        uses: ./.github/actions/build-kotlin
+        with:
+          java-version: 21
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:java-kotlin"
