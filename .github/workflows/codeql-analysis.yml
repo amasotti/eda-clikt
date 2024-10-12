@@ -57,6 +57,6 @@ jobs:
           category: "/language:java-kotlin"
 
       - name: Upload CodeQL Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4.4.3
         with:
           path: /home/runner/work/_temp/codeql_databases/java.zip
