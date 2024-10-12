@@ -12,7 +12,7 @@ on:
 
 jobs:
   analyze:
-    name: Analyze Rust
+    name: Analyze Kotlin
     # Runner size impacts CodeQL analysis time. To learn more, please see:
     #   - https://gh.io/recommended-hardware-resources-for-running-codeql
     #   - https://gh.io/supported-runners-and-hardware-resources
@@ -31,11 +31,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.22'
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
