@@ -59,4 +59,4 @@ jobs:
       - name: Upload CodeQL Results
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: results/java.sarif
+          sarif_file: /home/runner/work/_temp/codeql_databases/java.zip
